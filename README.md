@@ -13,6 +13,19 @@ docker-compose version 1.29.2, build 5becea4c
 5. Options of choosing durable / non-durable delivery
 6. Loose coupling of end-user interface
 
+## Main Learnings
+### 1. RabbitMQ features and functionalities
+Exchanges  
+Queues  
+Topic and Routing  
+Durability
+
+### 2. Learnigns related to docker and docker compose
+Volumes  
+Dependencies  
+Healthchecks  
+Overriding behaviour of base image
+
 ### A note on exposed ports
 The rabbitmq image has built-in exposed ports. It only includes the EXPOSE directive int their Dockerfile which may
 or may not be exposed based on certain conditions. Creating a fork out of their image and building it without
