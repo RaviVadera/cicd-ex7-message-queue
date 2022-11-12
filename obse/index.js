@@ -23,6 +23,7 @@ const onMessageReceived = (receivedMessage) => {
     const messageContent = receivedMessage.content.toString();
     const messageLogEntry = `${new Date().toISOString()} ${messageCount++} ${messageContent} to ${topic}\n`;
     console.log(messageLogEntry.trim());
+    // append message entry to file
     fs.appendFileSync(messageLogPath, messageLogEntry);
 };
 

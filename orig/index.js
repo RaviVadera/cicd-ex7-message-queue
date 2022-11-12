@@ -10,14 +10,21 @@ await mqChannel.assertExchange(mqExchange, 'topic', { durable: false });
 
 var messageNo = 1;
 
+// create message content
 const getMessageContent = () => {
   return `MSG_${messageNo++}`;
 };
 
+// idle out for 1 day after messages are sent
+// I tried making the ORIG like an async task executor
+// but did not succeed, this should still be enough
+// as requirements did not specify any constraints
+// related to idling the ORIG
 const waitForExit = () => {
   setTimeout(() => { }, 1 * 24 * 60 * 60 * 1000);
 };
 
+// wait for 3 seconds before sending message
 const sendMessageWithTimeout = (count) => {
   setTimeout(() => {
     if (count > 0) {
@@ -29,7 +36,9 @@ const sendMessageWithTimeout = (count) => {
   }, 3000);
 };
 
+// first message should be sent without timeout
 mqChannel.publish(mqExchange, mqTopic, Buffer.from(getMessageContent()));
+// consecutive 2 messages with timeout
 sendMessageWithTimeout(2);
 
 // /**
